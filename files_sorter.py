@@ -28,7 +28,7 @@ def files_copying(path_to_source_folder: Path) -> None:
         for item in path_to_source_folder.iterdir():
             if item.is_file():
                 extension = item.suffix[1:]
-                extension_folder = destination_folder/extension
+                extension_folder = destination_folder.joinpath(extension)
                 extension_folder.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(item, extension_folder/item.name)
     except (FileNotFoundError, PermissionError) as error:
